@@ -1,1 +1,11 @@
+spring:
+  datasource:
+    password: 123456
+    username: root
+    url: 'jdbc:mysql://localhost:3306/pauta?useTimezone=true&serverTimezone=UTC'
+  jpa:
+    hibernate:
+      ddl-auto: update
 
+server:
+  port: 8080
