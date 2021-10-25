@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
@@ -19,8 +20,10 @@ public class Pauta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "pautaDescriptin cannot be null")
     private String pautaDescriptin;
 
+    @NotBlank(message = "pautaTitle cannot be null")
     private String pautaTitle;
 
     private Date dtIns;
