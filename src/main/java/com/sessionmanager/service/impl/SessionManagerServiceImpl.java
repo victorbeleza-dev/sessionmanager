@@ -48,10 +48,12 @@ public class SessionManagerServiceImpl implements SessionManagerService {
         return repository.save(votingSession);
     }
 
+//    Verifica a quantidade de votos de uma sessão
     private VotingSession verifyVotes (VotingSession votingSession){
         int votesYes = 0;
         int votesNo = 0;
 
+//        Busca todos os votos de uma sessão para fazer a apuração dos votos
         List<Vote> listVotes = voteRepository.findAllByIdSession(votingSession.getId());
         for(Vote vote : listVotes){
             if(Objects.equals(vote.getVote(), "SIM"))
@@ -65,16 +67,19 @@ public class SessionManagerServiceImpl implements SessionManagerService {
         return votingSession;
     }
 
+//    Verifica se a pauta existe
     private void verifyPautaExist(Long idPauta) throws NotFoundException {
         if(!pautaRepository.findById(idPauta).isPresent())
             throw new NotFoundException("Não foi encontrada nenhuma pauta com esse id");
     }
 
+//    Verifica se a sessão existe
     private void verifySessionExist(Long idSession) throws NotFoundException {
         if(repository.findByIdAndSessionOpen(idSession, true) == null)
             throw new NotFoundException("Não foi encontrado nenhuma sessão aberta com este idSession");
     }
 
+//    Verifica se o associado ja votou naquela sessão
     private void verifyAlreadyVoted(Vote vote){
         if (voteRepository.findByIdAssociatedAndIdSession(vote.getIdAssociated(), vote.getIdSession()) != null)
             throw new DuplicateKeyException("Esse id do associado ja votou nesta sessão");

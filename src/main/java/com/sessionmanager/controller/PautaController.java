@@ -22,6 +22,12 @@ public class PautaController {
     @Autowired
     private PautaManagerService service;
 
+    public PautaController() {
+    }
+
+    public PautaController(PautaManagerService service) {
+    }
+
     @ApiOperation(value = "Registra uma nova pauta")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Pauta registrada com sucesso"),
@@ -37,6 +43,5 @@ public class PautaController {
         }catch (Exception e){
             throw e;
         }
-
     }
 }

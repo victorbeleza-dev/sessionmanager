@@ -35,10 +35,10 @@ public class SessionManagerController {
             @ApiResponse(code = 500, message = "Erro interno do servidor")
     })
     @PostMapping
-    public ResponseEntity<?> openSessionVotes(@Valid @RequestBody VotingSession votingSession) throws NotFoundException {
+    public ResponseEntity openSessionVotes(@Valid @RequestBody VotingSession votingSession) throws NotFoundException {
         try{
             service.registerVotingSession(votingSession);
-            return new ResponseEntity<>(HttpStatus.CREATED);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             throw e;
         }
@@ -54,7 +54,7 @@ public class SessionManagerController {
     @PatchMapping("/{idSession}")
     public ResponseEntity<VotingSession> closeSessionVotes(@RequestParam Long idSession) throws NotFoundException {
         try{
-            return new ResponseEntity<>(service.endVotingSession(idSession), HttpStatus.CREATED);
+            return ResponseEntity.status(HttpStatus.CREATED).body(service.endVotingSession(idSession));
         }catch (Exception e){
             throw e;
         }
@@ -71,7 +71,7 @@ public class SessionManagerController {
     public ResponseEntity voteSession(@Valid @RequestBody Vote vote) throws NotFoundException {
         try{
             service.registerVote(vote);
-            return new ResponseEntity(HttpStatus.CREATED);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             throw e;
         }
