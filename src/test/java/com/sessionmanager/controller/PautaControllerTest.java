@@ -1,7 +1,5 @@
 package com.sessionmanager.controller;
 
-import com.sessionmanager.mapper.PautaMapper;
-import com.sessionmanager.model.Pauta;
 import com.sessionmanager.model.dto.PautaDTO;
 import com.sessionmanager.repository.PautaRepository;
 import com.sessionmanager.service.PautaManagerService;
