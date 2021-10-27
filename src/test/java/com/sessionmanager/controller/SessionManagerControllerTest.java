@@ -67,32 +67,6 @@ public class SessionManagerControllerTest {
     }
 
     @Test
-    public void mustReturnSuccess_WhenInsertingVoteInTable() throws Exception {
-        Vote vote = Vote.builder().vote("SIM").idSession(2L).idAssociated(2L).build();
-
-        given()
-                .contentType(ContentType.JSON)
-                .body(vote)
-                .when()
-                .post("/session/vote")
-                .then()
-                .statusCode(HttpStatus.CREATED.value());
-    }
-
-    @Test
-    public void mustReturnBadRequest_WhenInsertingVoteWrongInTable() throws Exception {
-        Vote vote = Vote.builder().vote("SIM").build();
-
-        given()
-                .contentType(ContentType.JSON)
-                .body(vote)
-                .when()
-                .post("/session/vote")
-                .then()
-                .statusCode(HttpStatus.BAD_REQUEST.value());
-    }
-
-    @Test
     public void mustReturnSuccess_WhenEndVotingSession() throws Exception {
         VotingSession votingSession = VotingSession.builder().idPauta(2L).build();
 
