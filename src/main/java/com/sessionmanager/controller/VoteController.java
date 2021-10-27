@@ -35,10 +35,9 @@ public class VoteController {
             @ApiResponse(code = 500, message = "Erro interno do servidor")
     })
     @PostMapping
-    public ResponseEntity voteSession(@Valid @RequestBody VoteDTO vote) throws NotFoundException {
+    public ResponseEntity<Vote> voteSession(@Valid @RequestBody VoteDTO vote) throws Exception {
         try{
-            service.registerVote(voteMapper.convertToEntity(vote));
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+            return ResponseEntity.status(HttpStatus.CREATED).body(service.registerVote(voteMapper.convertToEntity(vote)));
         }catch (Exception e){
             throw e;
         }

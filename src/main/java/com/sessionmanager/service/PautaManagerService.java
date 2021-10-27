@@ -4,5 +4,5 @@ import com.sessionmanager.model.Pauta;
 
 public interface PautaManagerService {
 
-    void registerPauta(Pauta pauta) throws Exception;
+    Pauta registerPauta(Pauta pauta) throws Exception;
 }

@@ -5,5 +5,5 @@ import javassist.NotFoundException;
 
 public interface VoteSessionManagerService {
 
-    void registerVote(Vote vote) throws NotFoundException;
+    Vote registerVote(Vote vote) throws Exception;
 }

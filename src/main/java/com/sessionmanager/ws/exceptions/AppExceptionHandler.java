@@ -58,4 +58,13 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.NOT_FOUND.value(), errorDescription, new Date());
         return new ResponseEntity<Object>(errorMessage, new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(value = {IllegalAccessException.class})
+    protected ResponseEntity<Object> IllegalAccessException(IllegalAccessException e, WebRequest request) {
+        String errorDescription = e.getLocalizedMessage();
+        if(errorDescription == null) errorDescription = e.toString();
+
+        ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value(), errorDescription, new Date());
+        return new ResponseEntity<Object>(errorMessage, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
 }

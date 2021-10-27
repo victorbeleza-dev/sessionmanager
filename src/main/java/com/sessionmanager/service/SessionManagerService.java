@@ -5,9 +5,9 @@ import javassist.NotFoundException;
 
 public interface SessionManagerService {
 
-    void registerVotingSession(VotingSession votingSession) throws NotFoundException;
+    VotingSession registerVotingSession(VotingSession votingSession) throws NotFoundException;
 
     VotingSession endVotingSession(Long idSession) throws NotFoundException;
 
-    void verifySessionExist(Long idSession) throws NotFoundException;
+    boolean verifySessionExist(Long idSession) throws NotFoundException;
 }

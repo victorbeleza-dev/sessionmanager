@@ -14,9 +14,9 @@ public class PautaManagerServiceImpl implements PautaManagerService {
     private PautaRepository repository;
 
     @Override
-    public void registerPauta(Pauta pauta) throws Exception {
+    public Pauta registerPauta(Pauta pauta) throws Exception {
         verifyPautaExistByTitle(pauta);
-        repository.save(pauta);
+        return repository.save(pauta);
     }
 
     private void verifyPautaExistByTitle(Pauta pauta) throws Exception {

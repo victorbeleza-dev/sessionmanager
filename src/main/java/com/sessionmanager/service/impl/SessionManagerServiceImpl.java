@@ -26,9 +26,9 @@ public class SessionManagerServiceImpl implements SessionManagerService {
     private PautaRepository pautaRepository;
 
     @Override
-    public void registerVotingSession(VotingSession votingSession) throws NotFoundException {
+    public VotingSession registerVotingSession(VotingSession votingSession) throws NotFoundException {
         verifyPautaExist(votingSession.getIdPauta());
-        repository.save(votingSession);
+        return repository.save(votingSession);
     }
 
     @Override
@@ -56,14 +56,16 @@ public class SessionManagerServiceImpl implements SessionManagerService {
         return votingSession;
     }
 
-    private void verifyPautaExist(Long idPauta) throws NotFoundException {
+    private boolean verifyPautaExist(Long idPauta) throws NotFoundException {
         if(!pautaRepository.findById(idPauta).isPresent())
             throw new NotFoundException("Não foi encontrada nenhuma pauta com esse id");
+        else return true;
     }
 
     @Override
-    public void verifySessionExist(Long idSession) throws NotFoundException {
+    public boolean verifySessionExist(Long idSession) throws NotFoundException {
         if(repository.findByIdAndSessionOpen(idSession, true) == null)
             throw new NotFoundException("Não foi encontrado nenhuma sessão aberta com este idSession");
+        else return true;
     }
 }
