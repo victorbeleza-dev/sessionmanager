@@ -27,10 +27,11 @@ public class PautaController {
 
     private final PautaMapper pautaMapper = new PautaMapper();
 
-    public PautaController() {
+    public PautaController(PautaManagerService service) {
+        this.service = service;
     }
 
-    public PautaController(PautaManagerService service) {
+    public PautaController() {
     }
 
     @ApiOperation(value = "Registra uma nova pauta")
@@ -44,7 +45,7 @@ public class PautaController {
     public ResponseEntity registerPauta(@Valid @RequestBody PautaDTO pauta) throws Exception {
         try{
             service.registerPauta(pautaMapper.convertToEntity(pauta));
-            return new ResponseEntity(HttpStatus.CREATED);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (Exception e){
             throw e;
         }

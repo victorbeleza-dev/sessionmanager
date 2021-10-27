@@ -6,12 +6,10 @@ import com.sessionmanager.repository.PautaRepository;
 import com.sessionmanager.repository.SessionManagerRepository;
 import com.sessionmanager.repository.VoteRepository;
 import com.sessionmanager.service.SessionManagerService;
-import com.sessionmanager.util.ValidateServicesUtil;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +28,7 @@ public class SessionManagerServiceImpl implements SessionManagerService {
     @Override
     public void registerVotingSession(VotingSession votingSession) throws NotFoundException {
         verifyPautaExist(votingSession.getIdPauta());
-        repository.save(assembleObjectVotingSession(votingSession));
+        repository.save(votingSession);
     }
 
     @Override
@@ -61,14 +59,6 @@ public class SessionManagerServiceImpl implements SessionManagerService {
     private void verifyPautaExist(Long idPauta) throws NotFoundException {
         if(!pautaRepository.findById(idPauta).isPresent())
             throw new NotFoundException("Não foi encontrada nenhuma pauta com esse id");
-    }
-
-    private VotingSession assembleObjectVotingSession(VotingSession votingSession){
-        return VotingSession.builder().dtOpenSession(new Date())
-                .idPauta(votingSession.getIdPauta())
-                .sessionOpen(true)
-                .votesNo(0).votesYes(0)
-                .build();
     }
 
     @Override

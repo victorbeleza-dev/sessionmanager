@@ -9,7 +9,8 @@ public class VoteMapper implements GenericMapper<Vote, VoteDTO>{
     public Vote convertToEntity(VoteDTO vote) {
         return Vote.builder().vote(vote.getVote())
                 .idSession(vote.getIdSession())
-                .idAssociated(vote.getIdAssociated()).build();
+                .idAssociated(vote.getIdAssociated())
+                .CPF(vote.getCPF()).build();
     }
 
 }

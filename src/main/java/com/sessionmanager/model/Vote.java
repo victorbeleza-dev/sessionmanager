@@ -33,5 +33,8 @@ public class Vote implements BaseEntity<Long> {
     @NotBlank(message = "vote cannot be null")
     private String vote;
 
+    @NotBlank(message = "CPF cannot be null")
+    private String CPF;
+
     private Date dtVote;
 }
