@@ -1,6 +1,9 @@
 package com.sessionmanager.controller;
 
+import com.sessionmanager.mapper.PautaMapper;
+import com.sessionmanager.mapper.VoteMapper;
 import com.sessionmanager.model.Pauta;
+import com.sessionmanager.model.dto.PautaDTO;
 import com.sessionmanager.service.PautaManagerService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -22,6 +25,8 @@ public class PautaController {
     @Autowired
     private PautaManagerService service;
 
+    private final PautaMapper pautaMapper = new PautaMapper();
+
     public PautaController() {
     }
 
@@ -36,9 +41,9 @@ public class PautaController {
             @ApiResponse(code = 500, message = "Erro interno do servidor")
     })
     @PostMapping
-    public ResponseEntity registerPauta(@Valid @RequestBody Pauta pauta) throws Exception {
+    public ResponseEntity registerPauta(@Valid @RequestBody PautaDTO pauta) throws Exception {
         try{
-            service.registerPauta(pauta);
+            service.registerPauta(pautaMapper.convertToEntity(pauta));
             return new ResponseEntity(HttpStatus.CREATED);
         }catch (Exception e){
             throw e;

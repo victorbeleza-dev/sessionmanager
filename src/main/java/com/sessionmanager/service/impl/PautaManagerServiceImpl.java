@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-
 @Service
 public class PautaManagerServiceImpl implements PautaManagerService {
 
@@ -18,7 +16,7 @@ public class PautaManagerServiceImpl implements PautaManagerService {
     @Override
     public void registerPauta(Pauta pauta) throws Exception {
         verifyPautaExistByTitle(pauta);
-        repository.save(assembleObjectPauta(pauta));
+        repository.save(pauta);
     }
 
     private void verifyPautaExistByTitle(Pauta pauta) throws Exception {
@@ -26,9 +24,4 @@ public class PautaManagerServiceImpl implements PautaManagerService {
             throw new DuplicateKeyException("Ja existe uma pauta com o mesmo titulo!");
     }
 
-    private Pauta assembleObjectPauta(Pauta pauta){
-        return Pauta.builder().pautaTitle(pauta.getPautaTitle())
-                .pautaDescriptin(pauta.getPautaDescriptin())
-                .dtIns(new Date()).build();
-    }
 }

@@ -17,7 +17,7 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class VotingSession {
+public class VotingSession implements BaseEntity<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +27,8 @@ public class VotingSession {
 
     @NotNull(message = "idPauta cannot be null")
     private Long idPauta;
+
+    private Integer minDurationSession;
 
     private int votesYes;
 

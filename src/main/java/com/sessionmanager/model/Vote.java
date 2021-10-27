@@ -11,13 +11,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vote {
+public class Vote implements BaseEntity<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,4 +32,6 @@ public class Vote {
 
     @NotBlank(message = "vote cannot be null")
     private String vote;
+
+    private Date dtVote;
 }
