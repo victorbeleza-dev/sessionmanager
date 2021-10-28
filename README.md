@@ -21,7 +21,7 @@ é identificado por um id único e pode votar apenas uma vez por pauta)
 * Docker
 
 ## API REST APP ENGINE GOOGLE CLOUD
-Para ver a documentação e usar a api, acesse [POLLVOTE-API](https://session-vote.rj.r.appspot.com/swagger-ui.html).
+O deploy para cloud foi feito pelo AppEngine para ver a documentação e usar a api, acesse [POLLVOTE-API](https://session-vote.rj.r.appspot.com/swagger-ui.html).
 
 ## Mensageria
 Por falta de tempo não consegui implementar a parte da mmensageria, onde eu usaria o kafka com a fila na hora em que se encerra uma sessão
