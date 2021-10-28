@@ -61,4 +61,14 @@ public class PautaControllerTest {
                 .then()
                 .statusCode(HttpStatus.BAD_REQUEST.value());
     }
+
+    @Test
+    public void mustReturnSuccess_WhenFindAlPauta() throws Exception {
+        given()
+                .contentType(ContentType.JSON)
+                .when()
+                .get("/pauta")
+                .then()
+                .statusCode(HttpStatus.OK.value());
+    }
 }

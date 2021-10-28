@@ -11,12 +11,10 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/pauta")
@@ -46,6 +44,22 @@ public class PautaController {
         try{
             service.registerPauta(pautaMapper.convertToEntity(pauta));
             return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (Exception e){
+            throw e;
+        }
+    }
+
+    @ApiOperation(value = "Busca todas as pautas")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Retorna uma lista de pautas"),
+            @ApiResponse(code = 400, message = "Requisição mal feita"),
+            @ApiResponse(code = 404, message = "Não encontrado"),
+            @ApiResponse(code = 500, message = "Erro interno do servidor")
+    })
+    @GetMapping
+    public ResponseEntity<List<Pauta>> findAllPautas() throws Exception {
+        try{
+            return ResponseEntity.status(HttpStatus.OK).body(service.findAllPauta());
         }catch (Exception e){
             throw e;
         }

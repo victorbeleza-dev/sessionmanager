@@ -1,8 +1,9 @@
 spring:
   datasource:
-    password: 123456
+    password: sessionvote123
     username: root
-    url: 'jdbc:mysql://localhost:3306/pauta?useTimezone=true&serverTimezone=UTC'
+    url: 'jdbc:google:mysql://session-vote:southamerica-east1:session-vote/pauta'
+    driver-class-name: com.mysql.jdbc.GoogleDriver
   jpa:
     hibernate:
       ddl-auto: update
